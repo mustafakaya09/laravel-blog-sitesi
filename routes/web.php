@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Front\Homepage;
 use App\Http\Controllers\Back\Dashboard;
 use App\Http\Controllers\Back\AuthController;
+use App\Http\Controllers\Back\PageController;
 //use App\Http\Controllers\Back\ArticleController;
 
 /*
@@ -40,14 +41,14 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function(){
   Route::get('/kategori/status','App\Http\Controllers\Back\CategoryController@switch')->name('category.switch');
   Route::get('/kategori/getData','App\Http\Controllers\Back\CategoryController@getData')->name('category.getdata');
   // PAGE ROUTE'S
-  Route::get('/sayfalar','App\Http\Controllers\Back\PageController@index')->name('page.index');
-  Route::get('/sayfalar/olustur','App\Http\Controllers\Back\PageController@create')->name('page.create');
+  Route::get('/sayfalar',[PageController::class, 'index'])->name('page.index');
+  Route::get('/sayfalar/olustur',[PageController::class, 'create'])->name('page.create');
   Route::get('/sayfalar/guncelle/{id}','App\Http\Controllers\Back\PageController@update')->name('page.edit');
   Route::post('/sayfalar/guncelle/{id}','App\Http\Controllers\Back\PageController@updatePost')->name('page.edit.post');
-  Route::post('/sayfalar/olustur','App\Http\Controllers\Back\PageController@post')->name('page.create.post');
+  Route::post('/sayfalar/olustur',[PageController::class, 'post'])->name('page.create.post');
   Route::get('/sayfa/switch', 'App\Http\Controllers\Back\PageController@switch')->name('page.switch');
   Route::get('/sayfa/sil/{id}','App\Http\Controllers\Back\PageController@delete')->name('page.delete');
-  Route::get('/sayfa/siralama','App\Http\Controllers\Back\PageController@orders')->name('page.orders');
+  Route::get('/sayfa/siralama',[PageController::class, 'orders'])->name('page.orders');
   // CONFIG ROOT'S
   Route::get('/ayarlar', 'App\Http\Controllers\Back\ConfigController@index')->name('config.index');
   Route::post('/ayarlar/update', 'App\Http\Controllers\Back\ConfigController@update')->name('config.update');
