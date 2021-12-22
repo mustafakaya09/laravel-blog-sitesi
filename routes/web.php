@@ -6,6 +6,8 @@ use App\Http\Controllers\Front\Homepage;
 use App\Http\Controllers\Back\Dashboard;
 use App\Http\Controllers\Back\AuthController;
 use App\Http\Controllers\Back\PageController;
+use App\Http\Controllers\Back\ConfigController;
+use App\Http\Controllers\Back\CategoryController;
 //use App\Http\Controllers\Back\ArticleController;
 
 /*
@@ -34,24 +36,24 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function(){
   Route::get('/harddeletearticle/{id}', 'App\Http\Controllers\Back\ArticleController@hardDelete')->name('hard.delete.article');
   Route::get('/recoverarticle/{id}', 'App\Http\Controllers\Back\ArticleController@recover')->name('recover.article');
   // CATEGORY ROUT'S
-  Route::get('/kategoriler','App\Http\Controllers\Back\CategoryController@index')->name('category.index');
-  Route::post('/kategoriler/create','App\Http\Controllers\Back\CategoryController@create')->name('category.create');
-  Route::post('/kategoriler/update','App\Http\Controllers\Back\CategoryController@update')->name('category.update');
-  Route::post('/kategoriler/delete','App\Http\Controllers\Back\CategoryController@delete')->name('category.delete');
-  Route::get('/kategori/status','App\Http\Controllers\Back\CategoryController@switch')->name('category.switch');
-  Route::get('/kategori/getData','App\Http\Controllers\Back\CategoryController@getData')->name('category.getdata');
+  Route::get('/kategoriler',[CategoryController::class, 'index'])->name('category.index');
+  Route::post('/kategoriler/create',[CategoryController::class, 'create'])->name('category.create');
+  Route::post('/kategoriler/update',[CategoryController::class, 'update'])->name('category.update');
+  Route::post('/kategoriler/delete',[CategoryController::class, 'delete'])->name('category.delete');
+  Route::get('/kategori/status',[CategoryController::class, 'switch'])->name('category.switch');
+  Route::get('/kategori/getData',[CategoryController::class, 'getData'])->name('category.getdata');
   // PAGE ROUTE'S
   Route::get('/sayfalar',[PageController::class, 'index'])->name('page.index');
   Route::get('/sayfalar/olustur',[PageController::class, 'create'])->name('page.create');
-  Route::get('/sayfalar/guncelle/{id}','App\Http\Controllers\Back\PageController@update')->name('page.edit');
-  Route::post('/sayfalar/guncelle/{id}','App\Http\Controllers\Back\PageController@updatePost')->name('page.edit.post');
+  Route::get('/sayfalar/guncelle/{id}',[PageController::class, 'update'])->name('page.edit');
+  Route::post('/sayfalar/guncelle/{id}',[PageController::class, 'updatePost'])->name('page.edit.post');
   Route::post('/sayfalar/olustur',[PageController::class, 'post'])->name('page.create.post');
-  Route::get('/sayfa/switch', 'App\Http\Controllers\Back\PageController@switch')->name('page.switch');
-  Route::get('/sayfa/sil/{id}','App\Http\Controllers\Back\PageController@delete')->name('page.delete');
+  Route::get('/sayfa/switch', [PageController::class, 'switch'])->name('page.switch');
+  Route::get('/sayfa/sil/{id}',[PageController::class, 'delete'])->name('page.delete');
   Route::get('/sayfa/siralama',[PageController::class, 'orders'])->name('page.orders');
   // CONFIG ROOT'S
-  Route::get('/ayarlar', 'App\Http\Controllers\Back\ConfigController@index')->name('config.index');
-  Route::post('/ayarlar/update', 'App\Http\Controllers\Back\ConfigController@update')->name('config.update');
+  Route::get('/ayarlar', [ConfigController::class, 'index'])->name('config.index');
+  Route::post('/ayarlar/update', [ConfigController::class, 'update'])->name('config.update');
   //
   Route::get('cikis',[AuthController::class, 'logout'])->name('logout');
 });
