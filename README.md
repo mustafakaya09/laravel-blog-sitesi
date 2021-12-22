@@ -1,3 +1,4 @@
+<a href="https://www.youtube.com/c/CodeigniterHocas%C4%B1/featured" target="_blank">**Codeigniter Hocası**</a>**- Laravel ile Blok Sitesi Dersleri**  <br />
 "Codeigniter Hocası" Youtube kanalında hazırlanan Blog Sitesi kaynak kodları baz alınmıştır.
 
 
